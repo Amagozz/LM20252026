@@ -138,5 +138,5 @@ Perfecto, vamos a organizarlo bien para que quede claro y útil en clase:
 * **LaTeX (TeX con macros)** → Sistema de marcas para composición tipográfica científica. No es XML, pero funciona con etiquetas para estructurar texto y fórmulas.
 * **JSON (JavaScript Object Notation)** → No es un lenguaje de marcas, sino un formato ligero de datos, pero suele confundirse con XML en entornos de intercambio de información.
 
----
+----
 
