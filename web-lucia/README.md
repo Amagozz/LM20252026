@@ -58,16 +58,28 @@ Necesitas **Node.js 20 o superior**.
 3. **Carga las obras de ejemplo** (opcional): `npm run seed`
 4. **Arranca:** `npm start` y abre <http://localhost:3000> (panel en <http://localhost:3000/admin>).
 
-## Publicar en internet (Render, gratis)
+## Publicar en internet gratis (sin comprar dominio)
 
-1. Sube el repositorio a GitHub.
-2. En [render.com](https://render.com) crea un **Web Service** a partir del repositorio.
-   - *Root Directory:* `web-lucia`
-   - *Build Command:* `npm install`
-   - *Start Command:* `npm start`
-3. En *Environment*, añade `MONGODB_URI`, `ADMIN_TOKEN` y `NODE_ENV=production`.
-4. Cuando termine, la web estará en `https://NOMBRE.onrender.com`. Desde *Settings → Custom Domains*
-   puedes conectar un dominio propio (p. ej. `luciacastro.es`).
+La web queda en una dirección gratuita del tipo `https://lucia-castro.onrender.com`,
+accesible desde cualquier ordenador o móvil. Coste: 0 €.
+
+1. **Base de datos:** crea el clúster gratuito en MongoDB Atlas (pasos de arriba).
+   En *Network Access* añade `0.0.0.0/0` (Render no tiene una IP fija) y copia la cadena
+   `mongodb+srv://...`, añadiendo `/lucia-castro` antes del `?`.
+2. **Render:** entra en [render.com](https://render.com) con tu cuenta de GitHub.
+3. Pulsa **New → Blueprint**, elige este repositorio y la rama donde está la web.
+   Render lee el archivo `render.yaml` de la raíz y lo configura todo solo.
+4. Cuando lo pida, pega la cadena de MongoDB en `MONGODB_URI` y pulsa **Apply**.
+5. En unos minutos la web estará en `https://lucia-castro.onrender.com`
+   (si el nombre está cogido, Render añade unas letras al final).
+6. La clave del panel la genera Render: *lucia-castro → Environment → ADMIN_TOKEN*.
+   Con ella se entra en `https://lucia-castro.onrender.com/admin`.
+7. Opcional: `npm run seed` en tu ordenador (con el `.env` apuntando a Atlas) carga las obras de ejemplo.
+
+**A tener en cuenta del plan gratuito:** si nadie visita la web durante 15 minutos, Render la
+"duerme", y la siguiente visita tarda alrededor de un minuto en cargar. Después va a velocidad normal.
+Si más adelante queréis un dominio propio (`luciacastro.es`), se añade en *Settings → Custom Domains*
+sin cambiar nada del código.
 
 Sirve cualquier alojamiento de Node.js (Railway, Fly.io, un VPS…).
 Si prefieres publicar la parte estática aparte (por ejemplo en GitHub Pages), pon la URL del servidor
