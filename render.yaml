@@ -1,0 +1,22 @@
+# Despliegue gratuito en Render (https://render.com) de la web de Lucía Castro.
+# En Render: New → Blueprint → elegir este repositorio.
+services:
+  - type: web
+    name: lucia-castro
+    runtime: node
+    plan: free
+    rootDir: web-lucia
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/salud
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+      # Cadena de conexión de MongoDB Atlas: Render la pedirá al crear el servicio.
+      - key: MONGODB_URI
+        sync: false
+      # Clave del panel /admin: Render genera una aleatoria (se consulta en Environment).
+      - key: ADMIN_TOKEN
+        generateValue: true
